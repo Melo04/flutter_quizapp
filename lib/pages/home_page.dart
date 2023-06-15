@@ -1,11 +1,10 @@
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:fluttergdsc/pages/landing_page.dart';
 import 'package:fluttergdsc/pages/quiz_page.dart';
-
-import '../components/form/custom_form_submit_button.dart';
+import 'package:fluttergdsc/pages/weather_page.dart';
+import 'google_logo_theme_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,10 +17,8 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     QuizPage(),
-    Text(
-      'Index 1: Google',
-      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-    ),
+    GoogleLogoThemePage(),
+    WeatherPage(),
     LandingPage(),
   ];
 
@@ -55,6 +52,10 @@ class _HomePageState extends State<HomePage> {
               selectedColor: Colors.blue,
             ),
             DotNavigationBarItem(
+              icon: Icon(Icons.sunny),
+              selectedColor: Colors.green,
+            ),
+            DotNavigationBarItem(
               icon: Icon(Icons.person),
               selectedColor: Colors.orange,
             ),
@@ -69,6 +70,5 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-    ;
   }
 }

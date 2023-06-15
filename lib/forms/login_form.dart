@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-
-import '../components/bottom_wording.dart';
+import 'package:fluttergdsc/controllers/login_controller.dart';
+import 'package:get/get.dart';
 import '../components/form/custom_form_submit_button.dart';
 import '../components/form/custom_text_form_field.dart';
-import '../components/square_tile.dart';
-import '../pages/forgot_password_page.dart';
-import '../pages/landing_page.dart';
-import '../pages/register_page.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -18,29 +13,28 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final controller = Get.put(LoginController());
   
   @override
   Widget build(BuildContext context) {
     return Container(
-              margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+              margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
               child: Form(
                 key: _formKey,
                 child: Column(
                   children: [
                     CustomTextFormField(
-                        controller: usernameController,
-                        hintText: "Enter your username",
-                        labelText: "Username",
+                        controller: controller.email,
+                        hintText: "Enter your email",
+                        labelText: "Email",
                         obscureText: false,
-                        icon: Icons.person),
+                        icon: Icons.mail),
                     const SizedBox(
                       height: 10,
                     ),
                     CustomTextFormField(
-                        controller: passwordController,
+                        controller: controller.password,
                         hintText: "Enter your password",
                         labelText: "Password",
                         obscureText: true,
@@ -65,7 +59,7 @@ class _LoginFormState extends State<LoginForm> {
                     const SizedBox(height: 25),
                     CustomFormSubmitButton(buttonText: "Login", buttonAction: () {
                       if (_formKey.currentState!.validate()) {
-                        if(usernameController.text == "admin" && passwordController.text == "admin456"){
+                        LoginController.instance.loginUser();
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text("Login Success"),
@@ -73,15 +67,6 @@ class _LoginFormState extends State<LoginForm> {
                             ),
                           );
                           Navigator.pushNamed(context, "/home");
-                          ;
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text("Wrong Credential, Please Try Again"),
-                              backgroundColor: Colors.red,
-                            ),
-                          );
-                        }
                       }
                     })],
                 ),

@@ -1,6 +1,14 @@
-# Flutter Bootcamp
+# Flutter Quiz and Weather app
 
-A 6-days flutter workshop where I learn the basics of Flutter and learn how to create an application
+A flutter application where I get to learn the fundamentals of Dart and Flutter along with working in FlutterFire CLI 
+
+Page included:
+- Quiz app
+- Google Logo Theme Page
+- Weather app
+- Profile page
+
+Weather api obtained from: https://openweathermap.org/
 
 ## Getting Started
 

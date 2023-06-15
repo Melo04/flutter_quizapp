@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:fluttergdsc/components/form/custom_form_submit_button.dart';
-import 'package:fluttergdsc/components/form/custom_text_form_field.dart';
-import 'package:fluttergdsc/components/square_tile.dart';
 import 'package:fluttergdsc/forms/forgot_password_form.dart';
-import 'package:fluttergdsc/pages/register_page.dart';
-
 import '../components/bottom_wording.dart';
-import '../components/logo_banner.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -27,15 +21,26 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           child: Center(
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
-                LogoBanner(icon: Icons.lock_reset, title: "Reset Password"),
-                SizedBox(
+                const Column(children: [
+                  Icon(Icons.lock_reset, size: 120),
+                  SizedBox(height: 20),
+                  Text(
+                    "Reset Password",
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                ]),
+                const SizedBox(
                   height: 25,
                 ),
                 ForgotPasswordForm(),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 BottomWording(
@@ -45,7 +50,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     Navigator.pushNamed(context, "/register");
                   },
                 )
-                ],
+              ],
             ),
           ),
         ),

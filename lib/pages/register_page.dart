@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:fluttergdsc/components/form/custom_text_form_field.dart';
-import 'package:fluttergdsc/components/square_tile.dart';
 import 'package:fluttergdsc/forms/register_form.dart';
 import '../components/bottom_wording.dart';
-import '../components/form/custom_form_submit_button.dart';
-import '../components/logo_banner.dart';
-import 'forgot_password_page.dart';
-import 'login_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -34,7 +28,18 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(
                   height: 50,
                 ),
-                LogoBanner(icon: Icons.flutter_dash, title: "Flutter Bootcamp"),
+                const Column(children: [
+                  Icon(Icons.flutter_dash, size: 120),
+                  SizedBox(height: 20),
+                  Text(
+                    "Flutter Bootcamp",
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                ]),
                 const SizedBox(height: 25),
                 Container(
                   margin: EdgeInsets.only(top: 10, left: 10, right: 10),
@@ -43,8 +48,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: Column(
                       children: [
                         RegisterForm(),
-                        const SizedBox(height: 50),
-                        CustomFormSubmitButton(buttonText: "Register", buttonAction: () {}),
                         const SizedBox(
                           height: 30,
                         ),
