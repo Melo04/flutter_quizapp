@@ -32,7 +32,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Icon(Icons.flutter_dash, size: 120),
                   SizedBox(height: 20),
                   Text(
-                    "Flutter Bootcamp",
+                    "Flutter Quiz & Weather App",
                     style: TextStyle(
                       fontSize: 30,
                       color: Colors.blue,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomFormSubmitButton extends StatelessWidget {
   final String buttonText;
@@ -15,9 +16,14 @@ class CustomFormSubmitButton extends StatelessWidget {
       child: ElevatedButton(
         style: ButtonStyle(
           backgroundColor:
-              MaterialStatePropertyAll<Color>(Colors.blue),
-          textStyle: MaterialStatePropertyAll<TextStyle>(
-              TextStyle(fontSize: 18)),
+              MaterialStatePropertyAll<Color>(Colors.blue.shade700),
+            textStyle: MaterialStatePropertyAll<TextStyle>(
+              GoogleFonts.nunito(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                wordSpacing: 5,
+              ),
+            ),
         ),
         onPressed: buttonAction,
         child: Text(buttonText),

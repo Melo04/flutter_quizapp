@@ -75,15 +75,11 @@ class AuthenticationRepository extends GetxController {
 
       // Once signed in, return the UserCredential
       return await FirebaseAuth.instance.signInWithCredential(credential);
-     } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e) {
       final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
       Get.snackbar("Error sign in account", ex.message,
           snackPosition: SnackPosition.BOTTOM);
       throw ex; // Throw the exception to be caught and handled properly
-    } on SignUpWithEmailAndPasswordFailure catch (e) {
-      Get.snackbar("Error sign in account", e.message,
-          snackPosition: SnackPosition.BOTTOM);
-      throw e; // Throw the exception to be caught and handled properly
     } catch (_) {
       const ex = SignUpWithEmailAndPasswordFailure();
       Get.snackbar("Error sign in account", ex.message,

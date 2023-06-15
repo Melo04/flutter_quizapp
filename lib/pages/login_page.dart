@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttergdsc/components/bottom_wording.dart';
-import 'package:fluttergdsc/components/square_tile.dart';
 import 'package:fluttergdsc/forms/login_form.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/login_controller.dart';
 
@@ -17,6 +16,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final controller = Get.put(LoginController());
   
+  bool isHovered = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
               Icon(Icons.flutter_dash, size: 120),
               SizedBox(height: 20),
               Text(
-                "Flutter Bootcamp",
+                "Flutter Quiz & Weather App",
                 style: TextStyle(
                   fontSize: 30,
                   color: Colors.blue,
@@ -68,29 +69,63 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SquareTile(
-                  imagePath: "assets/image/google.png",
-                  isLoading: controller.isGoogleLoading.value ? true : false,
+            Padding(
+              padding: const EdgeInsets.only(left: 30, right: 30, bottom: 10, top: 10),
+              child: MouseRegion(
+                onHover: (event) {
+                  setState(() {
+                    isHovered = true;
+                  });
+                },
+                onExit: (event) {
+                  setState(() {
+                    isHovered = false;
+                  });
+                },
+                child: ElevatedButton(
                   onPressed: () {
                     controller.googleSignIn();
                   },
+                   style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    primary: isHovered ? Colors.blue.withOpacity(1.0) : Colors.blue.withOpacity(0.2),
+                    elevation: isHovered ? 20 : 0, // Remove the button elevation
+                    padding: EdgeInsets.zero,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: 30.0,
+                          width: 30.0,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage("assets/image/google.png"),
+                              fit: BoxFit.cover,
+                            ),
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Text(
+                          "Sign in with Google",
+                          style:  GoogleFonts.poppins(
+                            color: isHovered ? Colors.white : Colors.blue,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                const SizedBox(
-                  width: 25,
-                ),
-                SquareTile(
-                  icon: Icons.facebook,
-                  isLoading: controller.isGoogleLoading.value ? true : false,
-                  onPressed: () {
-                    controller.googleSignIn();
-                  },
-                ),
-              ],
+              ),
             ),
             const SizedBox(
               height: 25,
