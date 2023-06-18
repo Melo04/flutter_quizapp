@@ -1,6 +1,5 @@
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttergdsc/pages/landing_page.dart';
 import 'package:fluttergdsc/pages/quiz_page.dart';
 import 'package:fluttergdsc/pages/weather_page.dart';

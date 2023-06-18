@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttergdsc/firebase_options.dart';
 import 'package:fluttergdsc/pages/forgot_password_page.dart';
 import 'package:fluttergdsc/pages/home_page.dart';
 import 'package:fluttergdsc/pages/login_page.dart';
@@ -9,10 +8,18 @@ import 'package:fluttergdsc/pages/weather_page.dart';
 import 'package:get/get.dart';
 import 'controllers/authentication_repo.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
-  .then((value) => Get.put(AuthenticationRepository()));
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyDZ7BNShu_ERrU3Da-KVxImyDWGucbbPiE",
+      authDomain: "flutterquiz-f4851.firebaseapp.com",
+      projectId: "flutterquiz-f4851",
+      storageBucket: "flutterquiz-f4851.appspot.com",
+      messagingSenderId: "805741337220",
+      appId: "1:805741337220:web:140b82976985e895e140d1"
+      ),
+  ).then((value) => Get.put(AuthenticationRepository()));
   WidgetsApp.debugAllowBannerOverride = false;
   
   runApp(GetMaterialApp(
@@ -32,7 +39,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(

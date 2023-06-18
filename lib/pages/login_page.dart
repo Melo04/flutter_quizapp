@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fluttergdsc/components/bottom_wording.dart';
 import 'package:fluttergdsc/forms/login_form.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../controllers/login_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -14,8 +15,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final controller = Get.put(LoginController());
-  
+  final GoogleSignIn googleSignIn = GoogleSignIn();
+  String? name, imageUrl, userEmail, uid;
+  //final controller = Get.put(LoginController());
+
   bool isHovered = false;
 
   @override
@@ -72,7 +75,8 @@ class _LoginPageState extends State<LoginPage> {
               height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 30, right: 30, bottom: 10, top: 10),
+              padding: const EdgeInsets.only(
+                  left: 30, right: 30, bottom: 10, top: 10),
               child: MouseRegion(
                 onHover: (event) {
                   setState(() {
@@ -86,14 +90,19 @@ class _LoginPageState extends State<LoginPage> {
                 },
                 child: ElevatedButton(
                   onPressed: () {
-                    controller.googleSignIn();
+                    // controller.isGoogleLoading.value = true;
+                    // controller.googleSignIn();
+                    signInWithGoogle();
                   },
-                   style: ElevatedButton.styleFrom(
+                  style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    primary: isHovered ? Colors.blue.withOpacity(1.0) : Colors.blue.withOpacity(0.2),
-                    elevation: isHovered ? 20 : 0, // Remove the button elevation
+                    primary: isHovered
+                        ? Colors.blue.withOpacity(1.0)
+                        : Colors.blue.withOpacity(0.2),
+                    elevation:
+                        isHovered ? 20 : 0, // Remove the button elevation
                     padding: EdgeInsets.zero,
                   ),
                   child: Padding(
@@ -115,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(width: 10),
                         Text(
                           "Sign in with Google",
-                          style:  GoogleFonts.poppins(
+                          style: GoogleFonts.poppins(
                             color: isHovered ? Colors.white : Colors.blue,
                             fontWeight: FontWeight.w600,
                             fontSize: 16,
@@ -141,5 +150,37 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  Future<User?> signInWithGoogle() async {
+    // Initialize Firebase
+    await Firebase.initializeApp();
+    User? user;
+    FirebaseAuth auth = FirebaseAuth.instance;
+    // The `GoogleAuthProvider` can only be
+    // used while running on the web
+    GoogleAuthProvider authProvider = GoogleAuthProvider();
+
+    try {
+      final UserCredential userCredential =
+          await auth.signInWithPopup(authProvider);
+      user = userCredential.user;
+    } catch (e) {
+      print(e);
+    }
+
+    if (user != null) {
+      uid = user.uid;
+      name = user.displayName;
+      userEmail = user.email;
+      imageUrl = user.photoURL;
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool('auth', true);
+      print("name: $name");
+      print("userEmail: $userEmail");
+      print("imageUrl: $imageUrl");
+    }
+    return user;
   }
 }

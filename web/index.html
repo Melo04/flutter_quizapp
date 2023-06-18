@@ -38,6 +38,21 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyDZ7BNShu_ERrU3Da-KVxImyDWGucbbPiE",
+      authDomain: "flutterquiz-f4851.firebaseapp.com",
+      projectId: "flutterquiz-f4851",
+      storageBucket: "flutterquiz-f4851.appspot.com",
+      messagingSenderId: "805741337220",
+      appId: "1:805741337220:web:140b82976985e895e140d1"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </head>
 <body>
   <script>

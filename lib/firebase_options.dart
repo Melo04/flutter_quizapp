@@ -10,10 +10,8 @@ import 'package:flutter/foundation.dart'
 /// ```dart
 /// import 'firebase_options.dart';
 /// // ...
-/// await Firebase.initializeApp(
-///   options: DefaultFirebaseOptions.web,
-/// );
-/// ```
+
+
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
@@ -69,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '805741337220',
     projectId: 'flutterquiz-f4851',
     storageBucket: 'flutterquiz-f4851.appspot.com',
+    androidClientId: '805741337220-ef87egtv19u6k48mdi5shc77spevgqas.apps.googleusercontent.com',
     iosClientId: '805741337220-8q7iu87710ib0j74qr14e6a5u8l8qaiq.apps.googleusercontent.com',
     iosBundleId: 'com.example.fluttergdsc',
   );

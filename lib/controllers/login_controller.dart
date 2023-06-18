@@ -14,19 +14,13 @@ class LoginController extends GetxController {
   final isGoogleLoading = false.obs;
   final isFacebookLoading = false.obs;
 
-  Future<void> loginUser() async {
-    try{
-      isLoading.value = true;
-      if(!loginFormKey.currentState!.validate()){
-        isLoading.value = false;
-        return;
-      }
-      final auth = AuthenticationRepository.instance;
-      await auth.loginWithEmailAndPassword(email.text.trim(), password.text.trim());
-      auth.setInitialScreen(auth.firebaseUser.value);
-    }catch(e) {
-      isLoading.value = false;
-      rethrow;
+  Future<void> loginUser(String email, String password) async {
+    String? error = await AuthenticationRepository.instance
+        .loginWithEmailAndPassword(email, password);
+    if (error != null) {
+      Get.showSnackbar(GetSnackBar(
+        message: error.toString(),
+      ));
     }
   }
 

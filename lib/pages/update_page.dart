@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttergdsc/pages/landing_page.dart';
 import 'package:get/get.dart';
-
 import '../controllers/profile_controller.dart';
 import '../controllers/user_model.dart';
 
@@ -15,7 +15,7 @@ class UpdateProfilePage extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () => Get.back(),
+          onPressed: () => Get.to(() => LandingPage()),
         ),
         title: Text("Update Profile",
             style: Theme.of(context).textTheme.headline6),
@@ -31,8 +31,8 @@ class UpdateProfilePage extends StatelessWidget {
                   UserModel userData = snapshot.data as UserModel;
 
                   //Controllers
-                  final email = TextEditingController(text:   userData.email);
-                  final password = TextEditingController(text:  userData.password);
+                  final email = TextEditingController(text: userData.email);
+                  final password = TextEditingController(text: userData.password);
                   final userName = TextEditingController(text: userData.userName);
                   final phoneNo = TextEditingController(text: userData.phoneNo);
 
@@ -104,7 +104,6 @@ class UpdateProfilePage extends StatelessWidget {
                                       phoneNo: phoneNo.text.trim(),
                                     );
                                     await controller.updateRecord(userData);
-
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.grey.shade800,

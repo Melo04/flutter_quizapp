@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttergdsc/forms/register_form.dart';
 import '../components/bottom_wording.dart';
 
