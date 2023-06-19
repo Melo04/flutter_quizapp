@@ -68,28 +68,28 @@ class UpdateProfilePage extends StatelessWidget {
                           children: [
                             TextFormField(
                                 controller: userName,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   label: Text("Username"),
                                   prefixIcon: Icon(Icons.person),
                                 )),
                             const SizedBox(height: 20),
                             TextFormField(
                                 controller: email,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   label: Text("Email"),
                                   prefixIcon: Icon(Icons.email),
                                 )),
                             const SizedBox(height: 20),
                             TextFormField(
                                 controller: password,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   label: Text("Password"),
                                   prefixIcon: Icon(Icons.lock),
                                 )),
                             const SizedBox(height: 20),
                             TextFormField(
                                 controller: phoneNo,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   label: Text("Phone number"),
                                   prefixIcon: Icon(Icons.phone),
                                 )),

@@ -16,49 +16,49 @@ class _LoginFormState extends State<LoginForm> {
   final controller = Get.put(LoginController());
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
-              margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    CustomTextFormField(
-                        controller: controller.email,
-                        hintText: "Enter your email",
-                        labelText: "Email",
-                        obscureText: false,
-                        icon: Icons.mail),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    CustomTextFormField(
-                        controller: controller.password,
-                        hintText: "Enter your password",
-                        labelText: "Password",
-                        obscureText: true,
-                        icon: Icons.lock),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 25),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          GestureDetector(
-                              child: Text("Forgot Password?",
-                                  style: TextStyle(color: Colors.grey)),
-                              onTap: () {
-                                Navigator.pushNamed(context, "/forgot-password");
-                              }),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 25),
-                   CustomFormSubmitButton(
+      margin: const EdgeInsets.only(top: 10, left: 10, right: 10),
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            CustomTextFormField(
+                controller: controller.email,
+                hintText: "Enter your email",
+                labelText: "Email",
+                obscureText: false,
+                icon: Icons.mail),
+            const SizedBox(
+              height: 10,
+            ),
+            CustomTextFormField(
+                controller: controller.password,
+                hintText: "Enter your password",
+                labelText: "Password",
+                obscureText: true,
+                icon: Icons.lock),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  GestureDetector(
+                      child: Text("Forgot Password?",
+                          style: TextStyle(color: Colors.grey)),
+                      onTap: () {
+                        Navigator.pushNamed(context, "/forgot-password");
+                      }),
+                ],
+              ),
+            ),
+            const SizedBox(height: 25),
+            CustomFormSubmitButton(
                 buttonText: "Login",
                 buttonAction: () {
                   if (_formKey.currentState!.validate()) {
@@ -77,8 +77,8 @@ class _LoginFormState extends State<LoginForm> {
                   }
                 })
           ],
-                ),
-              ),
-            );
+        ),
+      ),
+    );
   }
 }

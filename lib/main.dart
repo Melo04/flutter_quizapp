@@ -2,8 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttergdsc/pages/forgot_password_page.dart';
 import 'package:fluttergdsc/pages/home_page.dart';
+import 'package:fluttergdsc/pages/landing_page.dart';
 import 'package:fluttergdsc/pages/login_page.dart';
 import 'package:fluttergdsc/pages/register_page.dart';
+import 'package:fluttergdsc/pages/update_page.dart';
 import 'package:fluttergdsc/pages/weather_page.dart';
 import 'package:get/get.dart';
 import 'controllers/authentication_repo.dart';
@@ -29,6 +31,8 @@ void main() async{
       "/register": (context) => RegisterPage(),
       "/forgot-password": (context) => ForgotPasswordPage(),
       "/weather":(context) => WeatherPage(),
+      "/UpdateProfilePage":(context) => UpdateProfilePage(),
+      "/LandingPage":(context) => LandingPage(),
       "/home": (context) => HomePage(),
     }
   ));

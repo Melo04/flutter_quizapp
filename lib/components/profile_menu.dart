@@ -18,32 +18,41 @@ class ProfileMenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: onPress,
-      leading: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
-          color: Colors.blue.withOpacity(0.1),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+      child: ListTile(
+        onTap: onPress,
+        leading: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            color: Colors.blue.withOpacity(0.1),
+          ),
+          child: Icon(icon, color: Colors.blue),
         ),
-        child: Icon(icon, color: Colors.blue),
+        title: Text(title,
+            style:
+                Theme.of(context).textTheme.bodyText1?.apply(color: textColor)),
+        trailing: endIcon
+            ? Container(
+                width: 30,
+                height: 30,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: Colors.blue.withOpacity(0.1),
+                ),
+                child: Center(
+                  
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Icon(Icons.arrow_back_ios,
+                        size: 18.0, color: Colors.blue),
+                  ),
+                ),
+              )
+            : null,
       ),
-      title: Text(title,
-          style:
-              Theme.of(context).textTheme.bodyText1?.apply(color: textColor)),
-      trailing: endIcon
-          ? Container(
-              width: 30,
-              height: 30,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: Colors.blue.withOpacity(0.1),
-              ),
-              child: const Icon(Icons.arrow_back_ios,
-                  size: 18.0, color: Colors.blue),
-            )
-          : null,
     );
   }
 }
