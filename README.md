@@ -1,14 +1,16 @@
-# Flutter Quiz and Weather app
+# __Flutter Quiz and Weather app__
 
-A flutter application where I get to learn the fundamentals of Dart and Flutter along with working in FlutterFire CLI 
+A flutter application consist of quiz and realtime weather data where I get to learn the fundamentals of Dart and Flutter along with working in FlutterFire CLI 
 
 Page included:
 - Quiz app
-- Google Logo Theme Page
 - Weather app
 - Profile page
 
-Weather api obtained from: https://openweathermap.org/
+## __Screenshots__
+Login Page | Quiz Page | Weather Page
+:---------:|:---------:|:---------:
+<img src="assets/image/login.png" width="300px"> | <img src="assets/image/quiz.png" alt="quiz page" width="300px">|<img src="assets/image/weather.png" alt="weather page" width="300px">
 
 ## Getting Started
 

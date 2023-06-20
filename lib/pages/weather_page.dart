@@ -17,7 +17,7 @@ class _WeatherPageState extends State<WeatherPage> {
   Weather? data;
 
   Future<void> getData() async {
-    data = await client.getCurrentWeather("Japan");
+    data = await client.getCurrentWeather("Malaysia");
   }
 
   String getBackgroundImage() {
