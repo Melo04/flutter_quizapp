@@ -61,7 +61,7 @@ class _WeatherPageState extends State<WeatherPage> {
                         )),
                     currentWeather(
                         "${data!.main}", "${data!.temp}", "${data!.cityName}"),
-                    SizedBox(
+                    const SizedBox(
                       height: 10.0,
                     ),
                     Text(
@@ -72,8 +72,8 @@ class _WeatherPageState extends State<WeatherPage> {
                         fontWeight: FontWeight.w800,
                       ),
                     ),
-                    Divider(),
-                    SizedBox(
+                    const Divider(),
+                    const SizedBox(
                       height: 15.0,
                     ),
                     additionalInformation("${data!.wind}", "${data!.humidity}",

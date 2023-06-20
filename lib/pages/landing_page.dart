@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../components/form/custom_form_submit_button.dart';
 import '../components/profile_menu.dart';
-import '../controllers/user_model.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -25,13 +24,10 @@ class _LandingPageState extends State<LandingPage> {
   void initState() {
     super.initState();
     getSharedPreferences();
-    // Get.put(ProfileController());
   }
 
   Future<void> getSharedPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    // ProfileController profileController = ProfileController.instance;
-    // UserModel user = await profileController.getUserData();
     name = prefs.getString('name');
     email = prefs.getString('email');
     image = prefs.getString('image');
