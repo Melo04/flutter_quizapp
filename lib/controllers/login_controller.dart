@@ -18,9 +18,14 @@ class LoginController extends GetxController {
     String? error = await AuthenticationRepository.instance
         .loginWithEmailAndPassword(email, password);
     if (error != null) {
-      Get.showSnackbar(GetSnackBar(
-        message: error.toString(),
-      ));
+      Get.snackbar("Error", "Wrong Username or password");
+    }else{
+      ScaffoldMessenger.of(Get.context!).showSnackBar(
+        SnackBar(
+          content: Text("Login Successful"),
+          backgroundColor: Colors.green,
+        ),
+      );
     }
   }
 

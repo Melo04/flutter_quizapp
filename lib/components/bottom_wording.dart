@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BottomWording extends StatelessWidget {
   final String descriptionText;
@@ -13,13 +14,13 @@ class BottomWording extends StatelessWidget {
       children: [
         Text(
           descriptionText,
-          style: TextStyle(color: Colors.grey, fontSize: 16),
+          style: GoogleFonts.nunito(color: Colors.grey.shade900, fontSize: 16),
         ),
         GestureDetector(
           child: Text(
             navigationText,
-            style: TextStyle(
-                color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 16),
+            style: GoogleFonts.nunito(
+                color: Colors.blue.shade900, fontWeight: FontWeight.w800, fontSize: 16),
           ),
           onTap: navigationAction,
         ),

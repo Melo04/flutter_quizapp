@@ -17,7 +17,7 @@ class _WeatherPageState extends State<WeatherPage> {
   Weather? data;
 
   Future<void> getData() async {
-    data = await client.getCurrentWeather("Kuala Lumpur");
+    data = await client.getCurrentWeather("Japan");
   }
 
   String getBackgroundImage() {
@@ -30,7 +30,7 @@ class _WeatherPageState extends State<WeatherPage> {
         return "assets/image/sunny.jpg";
       }
     } else {
-      return "assets/image/sunny.jpg";
+      return "assets/image/cloudy.jpg";
     }
   }
 
@@ -48,37 +48,38 @@ class _WeatherPageState extends State<WeatherPage> {
           future: getData(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text("Weather App",
-                      style: GoogleFonts.poppins(
-                        fontSize: 32.0,
-                        //white
-                        color: Color(0xFFf9f9f9),
-                        fontWeight: FontWeight.bold,
-                      )),
-                  currentWeather(
-                      "${data!.main}", "${data!.temp}", "${data!.cityName}"),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Text(
-                    "Additional Details",
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      color: Color(0xdd212121),
-                      fontWeight: FontWeight.bold,
+              return Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Column(
+                  children: [
+                    Text("Weather App",
+                        style: GoogleFonts.poppins(
+                          fontSize: 32.0,
+                          //white
+                          color: Color(0xFFf9f9f9),
+                          fontWeight: FontWeight.bold,
+                        )),
+                    currentWeather(
+                        "${data!.main}", "${data!.temp}", "${data!.cityName}"),
+                    SizedBox(
+                      height: 10.0,
                     ),
-                  ),
-                  Divider(),
-                  SizedBox(
-                    height: 15.0,
-                  ),
-                  additionalInformation("${data!.wind}", "${data!.humidity}",
-                      "${data!.pressure}", "${data!.feels_like}"),
-                ],
+                    Text(
+                      "Additional Details",
+                      style: GoogleFonts.nunito(
+                        fontSize: 24.0,
+                        color: Color(0xdd212121),
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    Divider(),
+                    SizedBox(
+                      height: 15.0,
+                    ),
+                    additionalInformation("${data!.wind}", "${data!.humidity}",
+                        "${data!.pressure}", "${data!.feels_like}"),
+                  ],
+                ),
               );
             } else if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(

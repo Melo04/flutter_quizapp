@@ -133,18 +133,39 @@ class _QuizPageState extends State<QuizPage> {
           ) : Column(
             children : [
               Center(
-                child: Column(
-                  children: [
-                    SizedBox(height: 50),
-                    Text("You have completed the quiz!"),
-                    SizedBox(height: 20),
-                    Text("You scored $_score out of ${_questions.length}"),
-                          ElevatedButton(
-                            onPressed: _resetQuiz,
-                            child: Text("Restart Quiz"),
-                          ),
-                    SizedBox(height: 20),
-                  ],
+                child: Container(
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(10.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.3),
+                        spreadRadius: 1,
+                        blurRadius: 1,
+                        offset: Offset(
+                            0, 3), // controls the position of the shadow
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 50),
+                      Text("You have completed the quiz!", style: GoogleFonts.nunito(fontSize: 22, color: Colors.grey.shade800, fontWeight: FontWeight.w800)),
+                      SizedBox(height: 20),
+                      Text("You scored $_score out of ${_questions.length}", style: GoogleFonts.nunito(fontSize: 16, color: Colors.grey.shade800, fontWeight: FontWeight.w800)),
+                      SizedBox(height: 20),
+                            ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all<Color>(Colors.green.shade300),
+                                padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(20)),
+                              ),
+                              onPressed: _resetQuiz,
+                              child: Text("Restart Quiz", style: GoogleFonts.nunito(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black)),
+                            ),
+                      SizedBox(height: 20),
+                    ],
+                  ),
                 ),
               ),
             ],

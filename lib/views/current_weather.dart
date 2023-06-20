@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Widget currentWeather(String main, String temp, String location) {
   return Center(
@@ -13,7 +14,7 @@ Widget currentWeather(String main, String temp, String location) {
                     ? Icons.cloudy_snowing
                     : Icons.wb_sunny_rounded),
             color: main == "Clouds"
-                ? Colors.blue
+                ? Colors.white
                 : (main == "Rain" ? Colors.grey.shade800 : Colors.orange),
             size: 64.0),
         SizedBox(
@@ -30,9 +31,10 @@ Widget currentWeather(String main, String temp, String location) {
         ),
         Text(
           "$location",
-          style: TextStyle(
-            fontSize: 19.0,
-            color: Colors.grey.shade900,
+          style: GoogleFonts.poppins(
+            fontSize: 20.0,
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
           ),
         ),
         SizedBox(
@@ -40,10 +42,10 @@ Widget currentWeather(String main, String temp, String location) {
         ),
         Text(
           "$main",
-          style: TextStyle(
-            fontSize: 20.0,
-            color: main == "Clouds" ? Colors.blue : Colors.white,
-            fontWeight: FontWeight.bold,
+          style: GoogleFonts.bitter(
+            fontSize: 22.0,
+            color: Colors.grey.shade900,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ],

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fluttergdsc/controllers/authentication_repo.dart';
-import 'package:fluttergdsc/pages/update_page.dart';
+import 'package:fluttergdsc/controllers/profile_controller.dart';
+import 'package:fluttergdsc/pages/weather_page.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../components/form/custom_form_submit_button.dart';
 import '../components/profile_menu.dart';
+import '../controllers/user_model.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
@@ -23,16 +25,19 @@ class _LandingPageState extends State<LandingPage> {
   void initState() {
     super.initState();
     getSharedPreferences();
+    // Get.put(ProfileController());
   }
 
   Future<void> getSharedPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    // ProfileController profileController = ProfileController.instance;
+    // UserModel user = await profileController.getUserData();
     name = prefs.getString('name');
     email = prefs.getString('email');
     image = prefs.getString('image');
     setState(() {}); // Update the widget with the retrieved value
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +63,7 @@ class _LandingPageState extends State<LandingPage> {
                           height: 90,
                           child: Container(
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(100),
+                              borderRadius: BorderRadius.circular(90),
                               child: image != null
                                   ? Image.network(image!) 
                                   : Image.asset("assets/image/people.png"), 
@@ -73,8 +78,8 @@ class _LandingPageState extends State<LandingPage> {
                                   blurRadius: 3,
                                   offset: const Offset(0, 3),
                                 ),
-                              ]
-                            )
+                              ],
+                            ),
                           ),
                         ),
                         Container(
@@ -86,43 +91,44 @@ class _LandingPageState extends State<LandingPage> {
                           ),
                           child: Icon(Icons.edit,
                               size: 20.0, color: Colors.blue.shade900),
-                        )
+                        ),
                       ],
                     ),
                     const SizedBox(height: 20),
-                    Text(name ?? '', style: GoogleFonts.nunito(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w900,
-                    )), //name
-                    Text(email ?? '', style: GoogleFonts.nunito(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                    )), //email
+                    Text(name ?? '',
+                        style: GoogleFonts.nunito(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.black,
+                        )), //name
+                    Text(email ?? '',
+                        style: GoogleFonts.nunito(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        )), //email
                     const SizedBox(height: 10),
                     SizedBox(
                       width: 200,
                       child: ElevatedButton(
-                        onPressed: () => Get.to(() => UpdateProfilePage()),
+                        //navigate to weather page
+                        onPressed: () => Get.to(() => WeatherPage() ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: Text("Update Profile",
-                              style: TextStyle(color: Colors.white)),
+                          child: Text(
+                            "View Live Weather",
+                          ),
                         ),
                         style: ButtonStyle(
                           backgroundColor: MaterialStateColor.resolveWith(
                             (states) => states.contains(MaterialState.hovered)
-                                ? Colors.white
-                                : Colors.blue.withOpacity(0.8),
+                                ? Colors.white.withOpacity(0.8)
+                                : Colors.blue,
                           ),
                           foregroundColor: MaterialStateColor.resolveWith(
                             (states) => states.contains(MaterialState.hovered)
                                 ? Colors.blue
                                 : Colors.white,
-                          ),
-                          overlayColor: MaterialStateColor.resolveWith(
-                            (states) => states.contains(MaterialState.hovered)
-                                ? Colors.blue.withOpacity(0.2)
-                                : Colors.blue,
                           ),
                           textStyle: MaterialStateProperty.all(
                             GoogleFonts.nunito(
@@ -141,41 +147,67 @@ class _LandingPageState extends State<LandingPage> {
                     const SizedBox(height: 10),
                     const Divider(),
                     const SizedBox(height: 10),
-                    ProfileMenuWidget(
-                        title: "Settings",
-                        icon: Icons.settings,
-                        onPress: () {},
-                        endIcon: true),
-                    ProfileMenuWidget(
-                        title: "Help",
-                        icon: Icons.help,
-                        onPress: () {},
-                        endIcon: true),
-                    ProfileMenuWidget(
-                        title: "Notifications",
-                        icon: Icons.notifications,
-                        onPress: () {},
-                        endIcon: true),
-                    ProfileMenuWidget(
-                        title: "Privacy & Policy",
-                        icon: Icons.privacy_tip,
-                        onPress: () {},
-                        endIcon: true),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(10.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              spreadRadius: 1,
+                              blurRadius: 1,
+                              offset: Offset(
+                                  0, 3), // controls the position of the shadow
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            ProfileMenuWidget(
+                                title: "Settings",
+                                icon: Icons.settings,
+                                onPress: () {},
+                                endIcon: true),
+                            ProfileMenuWidget(
+                                title: "Help",
+                                icon: Icons.help,
+                                onPress: () {},
+                                endIcon: true),
+                            ProfileMenuWidget(
+                                title: "Notifications",
+                                icon: Icons.notifications,
+                                onPress: () {},
+                                endIcon: true),
+                            ProfileMenuWidget(
+                                title: "Privacy & Policy",
+                                icon: Icons.privacy_tip,
+                                onPress: () {},
+                                endIcon: true),
+                          ],
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       height: 20,
                     ),
-                    CustomFormSubmitButton(
-                      buttonText: "Log Out",
-                      buttonAction: () {
-                        AuthenticationRepository().logout();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text("Logout Success"),
-                            backgroundColor: Colors.green,
-                          ),
-                        );
-                        Navigator.pushNamed(context, "/login");
-                      },
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: CustomFormSubmitButton(
+                        buttonText: "Logout",
+                        buttonAction: () {
+                          AuthenticationRepository().logout();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Logout Success"),
+                              backgroundColor: Colors.green,
+                            ),
+                          );
+                          Navigator.pushNamed(context, "/login");
+                        },
+                      ),
                     ),
                   ],
                 ),

@@ -34,16 +34,16 @@ class _LoginPageState extends State<LoginPage> {
         child: Center(
           child: Column(
             children: [
-              const SizedBox(height: 70),
-              const Column(children: [
+              SizedBox(height: 70),
+              Column(children: [
                 Icon(Icons.flutter_dash, size: 120),
                 SizedBox(height: 20),
                 Text(
                   "Flutter Quiz & Weather App",
-                  style: TextStyle(
+                  style: GoogleFonts.nunito(
                     fontSize: 30,
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
+                    color: Colors.grey.shade900,
+                    fontWeight: FontWeight.w700,
                   ),
                 )
               ]),
@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Text(
                           "Or continue with",
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(color: Colors.grey.shade600, fontSize: 16, fontWeight: FontWeight.w600),
                         )),
                     Expanded(
                       child: Divider(
@@ -106,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       primary: isHovered
                           ? Colors.blue.withOpacity(1.0)
-                          : Colors.blue.withOpacity(0.2),
+                          : Colors.white,
                       elevation:
                           isHovered ? 20 : 0, // Remove the button elevation
                       padding: EdgeInsets.zero,
@@ -164,8 +164,6 @@ class _LoginPageState extends State<LoginPage> {
     await Firebase.initializeApp();
     User? user;
     FirebaseAuth auth = FirebaseAuth.instance;
-    // The `GoogleAuthProvider` can only be
-    // used while running on the web
     GoogleAuthProvider authProvider = GoogleAuthProvider();
 
     try {

@@ -18,7 +18,7 @@ class CustomFormSubmitButton extends StatelessWidget {
               MaterialStatePropertyAll<Color>(Colors.blue.shade700),
             textStyle: MaterialStatePropertyAll<TextStyle>(
               GoogleFonts.nunito(
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: FontWeight.w600,
                 wordSpacing: 5,
               ),

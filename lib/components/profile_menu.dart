@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProfileMenuWidget extends StatelessWidget {
   const ProfileMenuWidget({
@@ -32,22 +33,25 @@ class ProfileMenuWidget extends StatelessWidget {
           child: Icon(icon, color: Colors.blue),
         ),
         title: Text(title,
-            style:
-                Theme.of(context).textTheme.bodyText1?.apply(color: textColor)),
+            style: GoogleFonts.nunito(
+                fontSize: 16,
+                fontWeight: FontWeight.w800,
+                color: textColor ?? Colors.black
+            )),
         trailing: endIcon
             ? Container(
                 width: 30,
                 height: 30,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  color: Colors.blue.withOpacity(0.1),
+                  color: Colors.blue.withOpacity(0.5),
                 ),
                 child: Center(
                   
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Icon(Icons.arrow_back_ios,
-                        size: 18.0, color: Colors.blue),
+                        size: 18.0, color: Colors.white),
                   ),
                 ),
               )

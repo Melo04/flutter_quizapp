@@ -5,7 +5,6 @@ import 'package:fluttergdsc/pages/home_page.dart';
 import 'package:fluttergdsc/pages/landing_page.dart';
 import 'package:fluttergdsc/pages/login_page.dart';
 import 'package:fluttergdsc/pages/register_page.dart';
-import 'package:fluttergdsc/pages/update_page.dart';
 import 'package:fluttergdsc/pages/weather_page.dart';
 import 'package:get/get.dart';
 import 'controllers/authentication_repo.dart';
@@ -30,10 +29,9 @@ void main() async{
       "/login": (context) => LoginPage(),
       "/register": (context) => RegisterPage(),
       "/forgot-password": (context) => ForgotPasswordPage(),
-      "/weather":(context) => WeatherPage(),
-      "/UpdateProfilePage":(context) => UpdateProfilePage(),
+      "/WeatherPage":(context) => WeatherPage(),
       "/LandingPage":(context) => LandingPage(),
-      "/home": (context) => HomePage(),
+      "/HomePage": (context) => HomePage(),
     }
   ));
 }

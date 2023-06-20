@@ -22,7 +22,8 @@ class ProfileController extends GetxController {
     if(firebaseUser != null){
       final email = firebaseUser.email;
       if(email != null){
-        return _userRepo.getUserDetails(email);
+        UserModel user = await _userRepo.getUserDetails(email);
+        return user;
       }else{
         Get.snackbar("Error", "Login to continue");
         throw Exception("Login to continue");
@@ -32,15 +33,4 @@ class ProfileController extends GetxController {
       throw Exception("User not found");
     }
   }
-
-  Future<void> updateRecord(UserModel user) async {
-    try {
-      final firestore = FirebaseFirestore.instance;
-      await firestore.collection('Users').doc(user.id).set(user.toJson(), SetOptions(merge: true));
-      print('Profile updated successfully!');
-    } catch (error) {
-      print('Error updating profile: $error');
-    }
-  }
-
 }

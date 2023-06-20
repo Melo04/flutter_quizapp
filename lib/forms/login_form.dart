@@ -14,8 +14,6 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   final controller = Get.put(LoginController());
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -66,14 +64,6 @@ class _LoginFormState extends State<LoginForm> {
                     //     emailController.text, passwordController.text);
                     LoginController.instance.loginUser(
                         controller.email.text, controller.password.text);
-
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text("Login Success"),
-                        backgroundColor: Colors.green,
-                      ),
-                    );
-                    Navigator.pushNamed(context, "/home");
                   }
                 })
           ],
